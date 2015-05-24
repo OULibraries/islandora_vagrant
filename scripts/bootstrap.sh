@@ -1,15 +1,13 @@
-###
-# BASICS
-###
+#!/bin/bash
 
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/configs/variables" ]; then
-  . $SHARED_DIR/configs/variables
+  . "$SHARED_DIR"/configs/variables
 fi
 
 if [ ! -d "$DOWNLOAD_DIR" ]; then
-  mkdir -p $DOWNLOAD_DIR
+  mkdir -p "$DOWNLOAD_DIR"
 fi
 
 # Set apt-get for non-interactive mode
@@ -39,7 +37,8 @@ update-java-alternatives -s java-8-oracle
 apt-get install -y oracle-java8-set-default
 
 # Set JAVA_HOME variable both now and for when the system restarts
-export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+export JAVA_HOME
+JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment
 
 # Maven
@@ -57,9 +56,10 @@ sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /e
 apt-get -y install wget curl
 
 # Bug fix for Ubuntu 14.04 with zsh 5.0.2 -- https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/1242108
-export MAN_FILES=$(wget -qO- "http://sourceforge.net/projects/zsh/files/zsh/5.0.2/zsh-5.0.2.tar.gz/download" \
+export MAN_FILES
+MAN_FILES=$(wget -qO- "http://sourceforge.net/projects/zsh/files/zsh/5.0.2/zsh-5.0.2.tar.gz/download" \
   | tar xvz -C /usr/share/man/man1/ --wildcards "zsh-5.0.2/Doc/*.1" --strip-components=2)
-for MAN_FILE in $MAN_FILES; do gzip /usr/share/man/man1/${MAN_FILE##*/}; done
+for MAN_FILE in $MAN_FILES; do gzip /usr/share/man/man1/"${MAN_FILE##*/}"; done
 
 # More helpful packages
 apt-get -y install htop tree zsh #fish
