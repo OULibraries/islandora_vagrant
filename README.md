@@ -2,14 +2,39 @@
 
 ## Introduction
 
-The is a development environment virtual machine for Islandora. It should work on any operating system that supports VirtualBox and Vagrant.
+The is a development environment virtual machine for Islandora 7.x-1.x. It should work on any operating system that supports VirtualBox and Vagrant.
 
 N.B. This virtual machine **should not** be used in production.
+
 
 ## Requirements
 
 1. [VirtualBox](https://www.virtualbox.org/)
 2. [Vagrant](http://www.vagrantup.com/)
+
+
+## Variables
+
+### System Resources
+
+By default the virtual machine that is built uses 3GB of RAM. Your host machine will need to be able to support that. You can override the CPU and RAM allocation by creating `ISLANDORA_VAGRANT_CPUS` and `ISLANDORA_VAGRANT_MEMORY` environment variables and setting the values. For example, on an Ubuntu host you could add to `~/.bashrc`:
+
+```bash
+export ISLANDORA_VAGRANT_CPUS=4
+export ISLANDORA_VAGRANT_MEMORY=4096
+```
+
+### Hostname and Port Forwarding
+
+If you use a DNS or host file management plugin with Vagrant,  you may want to set a specific hostname for the virtual machine and disable port forwarding. You can do that with the `ISLANDORA_VAGRANT_HOSTNAME` and `ISLANDORA_VAGRANT_FORWARD` variables. For example:
+
+```bash
+export ISLANDORA_VAGRANT_HOSTNAME="islandora.vagrant.test"
+export ISLANDORA_VAGRANT_FORWARD="FALSE"
+```
+
+
+
 
 ## Use
 
@@ -41,11 +66,13 @@ GSearch:
   - username: fgsAdmin
   - password: fgsAdmin
 
-You can connect to the machine via ssh: `ssh -p 2222 vagrant@localhost`
-
-The default VM login details are:
+ssh, scp, rsync:
   - username: vagrant
   - password: vagrant
+  - Examples
+    - `ssh -p 2222 vagrant@localhost`
+    - `scp -P 2222 somefile.txt vagrant@localhost:/destination/path`
+    - `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/tmp`
 
 ## Environment
 
@@ -55,7 +82,7 @@ The default VM login details are:
 - Apache 2.26
 - Tomcat 7.0.52
 - Solr 4.2.0
-- Fedora 3.8.0
+- Fedora 3.8.1
 - GSearch HEAD
 - Islandora 7.x
 - PHP 5.5.9 
@@ -65,6 +92,11 @@ The default VM login details are:
 
 If you'd like to add your own customization script (to install additional modules, call other scripts, etc.), you can create a `custom.sh` file in the project's `scripts` directory. When that file is present, Vagrant will run it after all the other provisioning scripts have been run.
 
+## Maintainers
+
+* [Nick Ruest](https://github.com/ruebot)
+* [Luke Taylor](https://github.com/lutaylor)
+
 ## Authors
 
 * [Nick Ruest](https://github.com/ruebot)
@@ -72,6 +104,7 @@ If you'd like to add your own customization script (to install additional module
 * [Logan Cox](https://github.com/lo5an)
 * [Kevin Clarke](https://github.com/ksclarke)
 * [Mark Jordan](https://github.com/mjordan)
+* [Mark Cooper](https://github.com/mark-cooper)
 
 ## Acknowledgements
 
