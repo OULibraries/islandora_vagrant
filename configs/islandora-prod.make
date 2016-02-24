@@ -127,7 +127,7 @@ projects[islandora_solution_pack_disk_image][download][revision] = "e28d098220c2
 
 projects[islandora_embed][type] = "module"
 projects[islandora_embed][download][type] = "git"
-projects[islandora_embed][download][url] = "git@github.com:OULibraries/islandora_embed.git"
+projects[islandora_embed][download][url] = "https://github.com/OULibraries/islandora_embed.git"
 projects[islandora_embed][download][branch] = "pathauto-fix"
 projects[islandora_embed][download][revision] = "a22da6aa4d987f0ffc309cbe8bc867257e75a7ed"
 
@@ -157,7 +157,7 @@ projects[islandora_importer][download][revision] = "56f82c1dccc5e3f0078fb276eabb
 
 projects[islandora_internet_archive_bookreader][type] = "module"
 projects[islandora_internet_archive_bookreader][download][type] = "git"
-projects[islandora_internet_archive_bookreader][download][url] = "git@github.com:OULibraries/islandora_internet_archive_bookreader_temp.git"
+projects[islandora_internet_archive_bookreader][download][url] = "https://github.com/OULibraries/islandora_internet_archive_bookreader_temp.git"
 projects[islandora_internet_archive_bookreader][download][branch] = "7.x-oulib-deployed"
 projects[islandora_internet_archive_bookreader][download][revision] = "2838c83ee6415284e8bc39fd31d81fd62fce754d"
 
@@ -354,6 +354,6 @@ libraries[BagItPHP][directory_name] = "BagItPHP"
 libraries[BagItPHP][type] = "library"
 
 libraries[video-js][download][type] = "file"
-libraries[video-js][download][url] = "http://www.videojs.com/downloads/video-js-4.0.0.zip"
+libraries[video-js][download][url] = "https://github.com/videojs/video.js/releases/download/v4.12.15/video-js-4.12.15.zip"
 libraries[video-js][directory_name] = "video-js"
 libraries[video-js][type] = "library"
